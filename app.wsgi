@@ -8,11 +8,14 @@ os.chdir(os.path.dirname(__file__))
 activate_this = os.path.dirname(os.path.abspath(__file__)) + \
                 '/venv/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
-sys.path.append(os.path.dirname(__file__))
+path = os.path.dirname(__file__)
+if path not in sys.path:
+    sys.path.append(path)
 
 import bottle
 from bottle import request, post
 from pyicloud import PyiCloudService
+from pyicloud.exceptions import PyiCloudFailedLoginException
 import difflib
 from users import USERS
 
@@ -24,8 +27,10 @@ def findIphone():
         if intent['name'] == 'FindIphone':
             user = intent['slots']['User']['value']
             return findUserIphone(user)
-    except:
-        return response("Whoops, something broke. Try again.")
+    except PyiCloudFailedLoginException:
+        return response("Invalid icloud email or password for " + user);
+    except Exception as e:
+        return response("Whoops, something broke: " + str(e))
 
     return response(
         "No idea what you asked for. Try saying, Find My iPhone, John.")
@@ -47,6 +52,12 @@ def findUserIphone(user):
     user = found_user[0]
     email, passwd = USERS[user]
     api = PyiCloudService(email, passwd)   
+
+    if api.requires_2fa:
+        return response(("This account requires two factor authentication, which "
+                         "puts you in an odd place, because you need your phone to "
+                         "authorize for two factor authentication. I cannot help "
+                         "you find your iphone."))
 
     phones = [d for d in api.devices if d.content['deviceClass'] == 'iPhone']
 
