@@ -1,4 +1,4 @@
 users.py
-*.py
+*.pyc
 venv/
 sample_request.json
