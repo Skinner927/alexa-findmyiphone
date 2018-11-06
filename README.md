@@ -6,14 +6,8 @@ Most of the magic is done by
 [pyicloud](https://github.com/picklepete/pyicloud).
 
 # iCloud Two Factor Auth (2FA)
-This skill uses your iCloud username and password to activate the find my
-iPhone feature in iCloud. 2FA requires you to have your phone to sign into your
-iCloud account. Hopefully you see the irony: you're using this skill to find
-your phone, which is then required to authorize this skill via 2FA, to login to
-iCloud to find your phone. Chicken and egg problem. You may be able to
-[generate an app-specific password](https://support.apple.com/en-us/HT204397)
-for your account however, but I've never tried it (if you do, please let me
-know the results!).
+At this time Apple allows us to use Find My iPhone without 2FA confirmation,
+so this skill will work if you have 2FA enabled.
 
 ## Python Version
 This app was designed to be run with Python 2.7. No idea if it works with 3.x.
