@@ -10,7 +10,8 @@ At this time Apple allows us to use Find My iPhone without 2FA confirmation,
 so this skill will work if you have 2FA enabled.
 
 ## Python Version
-This app was designed to be run with Python 2.7. No idea if it works with 3.x.
+This was developed against Python 3.6.7. 
+Checkout the `py2` branch for the old Python 2 version.
 
 ## Hosting
 You'll need to host this project on your own server. Alexa will connect to your
@@ -21,7 +22,8 @@ free (there's no catch, this isn't an ad).
 ### AWS Lambda
 If you are not comfortable with setting up your own server or don't have the
 resources/time, [timtrinidad has ported this code](https://github.com/timtrinidad/alexa-findmyiphone) to work with AWS Lambda. I
-haven't personally tested it, but it looks ok from here
+haven't personally tested it, but it looks ok from here (This is the old py2 
+version).
 
 ### WSGI - Apache/NGINX/uWSGI/etc.
 This skill is written in Python with the Bottle web framework. The app is a
@@ -33,7 +35,7 @@ you're unsure.
 1. Clone or copy this repository somewhere e.g. `/opt/alexa-findmyiphone`.
 1. `cd` to your installed directory `cd /opt/alexa-findmyiphone`.
 1. Create a virtual environment in a directory named "venv":
-   `virtualenv -p python2 venv`. If you don't have the `virtualenv` command,
+   `virtualenv -p python3 venv`. If you don't have the `virtualenv` command,
    install it from pip: `pip install virtualenv`. If you don't have pip, use
    your package manager to get it e.g. `sudo apt-get install python-pip`.
 1. Activate the virtualenv: `source venv/bin/activate`.
