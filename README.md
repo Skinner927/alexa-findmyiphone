@@ -49,7 +49,7 @@ for other systems.
 
 1. Install Apache and Apache's mod_wsgi:
    `sudo apt-get install -y apache2 libapache2-mod-wsgi-py3`.
-1. Enable the module: `a2enmod wsgi`.
+1. Enable the module: `a2enmod wsgi_py3` (if `wsgi_py3` doesn't exist try `wsgi`).
 1. Follow the generic instructions above, but put the repo in
    `/var/www/alexa-findmyiphone`.
 
