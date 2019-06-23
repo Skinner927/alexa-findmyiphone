@@ -10,7 +10,7 @@ At this time Apple allows us to use Find My iPhone without 2FA confirmation,
 so this skill will work if you have 2FA enabled.
 
 ## Python Version
-This was developed against Python 3.6.7. 
+This was developed against Python 3.6.7.
 Checkout the `py2` branch for the old Python 2 version.
 
 ## Hosting
@@ -22,7 +22,7 @@ free (there's no catch, this isn't an ad).
 ### AWS Lambda
 If you are not comfortable with setting up your own server or don't have the
 resources/time, [timtrinidad has ported this code](https://github.com/timtrinidad/alexa-findmyiphone) to work with AWS Lambda. I
-haven't personally tested it, but it looks ok from here (This is the old py2 
+haven't personally tested it, but it looks ok from here (This is the old py2
 version).
 
 ### WSGI - Apache/NGINX/uWSGI/etc.
@@ -48,7 +48,7 @@ These instructions are for Apache on Ubuntu, but it should be fairly standard
 for other systems.
 
 1. Install Apache and Apache's mod_wsgi:
-   `sudo apt-get install -y apache2 libapache2-mod-wsgi`.
+   `sudo apt-get install -y apache2 libapache2-mod-wsgi-py3`.
 1. Enable the module: `a2enmod wsgi`.
 1. Follow the generic instructions above, but put the repo in
    `/var/www/alexa-findmyiphone`.
