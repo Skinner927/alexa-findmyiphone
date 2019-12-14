@@ -93,6 +93,28 @@ This goes in `/etc/apache2/sites-enabled/000-default.conf` or what have you.
 Now restart Apache and you should be good `sudo service apache2 restart` or
 `sudo systemctl restart apache2`.
 
+#### Docker
+
+Make a directory to work in (eg. `/opt/findmyiphone`) and `cd` into it.
+Ensure it's owned by root so nobody can easily read your `users.py` file.
+
+Clone the repo into a dir named `repo`:
+```
+git clone https://github.com/Skinner927/alexa-findmyiphone.git repo
+```
+
+Copy users example to current dir `cp repo/users.example.py users.py` and
+update it.
+
+Build docker. `cd repo && docker build -t findmyiphone .`
+
+Start docker:
+```
+cd .. && docker run -p 8080:8080 --mount type=bind,source="$(pwd)/users.py",target=/app/users.py -d -t --restart always findmyiphone
+```
+
+Then put nginx or some forwarding proxy in front of it.
+
 ## Config on Amazon's end
 
 1. Open your
